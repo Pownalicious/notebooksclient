@@ -1,0 +1,9 @@
+@import "./main.scss";
+
+.Notebooks {
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: scale(1.02) translate(0, -3px);
+  }
+}
