@@ -1,20 +1,27 @@
-import React from "react";
-import "../style/sidebar.scss";
+import { createBrowserHistory } from "history";
 
-export default function SideBar(prop) {
-  function getNote() {}
+export default function SideBar(props) {
+  const history = createBrowserHistory();
+
+  function clickHandler(note) {
+    props.setActiveNote(note);
+    //navigate to page using react router
+    history.push("/notes?id=" + note.id);
+  }
 
   return (
-    <div class="leftMenu ">
-      {prop.map((note) => {
-        return (
-          <ul>
-            <button class="button" onClick={getNote}>
-              {note.title}
-            </button>
-          </ul>
-        );
-      })}
+    <div className="sidebar leftMenu">
+      <ul>
+        {props.notes.map((note) => {
+          return (
+            <li>
+              <button className="button" onClick={() => clickHandler(note)}>
+                {note.title}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

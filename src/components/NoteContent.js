@@ -1,13 +1,13 @@
-import React from "react";
-import "../style/notesContent.scss";
+import { Link } from "react-router-dom";
+export default function NoteContent({ title, content }) {
+  if (!title) return <p>click a note to load</p>;
 
-export default function NoteContent(prop) {
   return (
     <div class="col-sm-2">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{prop.title}</h5>
-          <p class="card-text">{prop.content}</p>
+          <h5 class="card-title">{title}</h5>
+          <p class="card-text">{content}</p>
         </div>
       </div>
     </div>

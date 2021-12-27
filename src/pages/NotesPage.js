@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import NoteContent from "../components/NoteContent";
 import SideBar from "../components/SideBar";
 
-export default function NotesPage(prop) {
+export default function NotesPage() {
   const [notes, setNotes] = useState([]);
-  const [button, setButton] = useState();
+  const [activeNote, setActiveNote] = useState({});
+
   useEffect(() => {
     async function doSomeDataFetching() {
       console.log("I'm gonna fetch some data atm!");
@@ -14,18 +15,20 @@ export default function NotesPage(prop) {
       setNotes(res.data);
     }
     doSomeDataFetching();
+
+    // getCurrentNoteIdFromUrl();
   }, []);
 
   return (
-    <div>
-      <SideBar setButton={prop.title} />
+    <div className="notesPage">
+      <SideBar notes={notes} setActiveNote={setActiveNote} />
 
-      <div className="row">
-        {notes.map((note) => {
-          console.log(notes);
-          return <NoteContent title={note.title} content={note.content} />;
-        })}
-      </div>
+      <NoteContent {...activeNote} />
     </div>
   );
 }
+
+// function getCurrentNoteIdFromUrl() {
+//   const urlSearchParams = new URLSearchParams(document.location.search);
+//   console.warn("getCurrentNoteIdFromUrl", urlSearchParams);
+// }

@@ -1,6 +1,3 @@
-import React from "react";
-import "../style/notebooks.scss";
-
 export default function NoteBooks(prop) {
   return (
     <div className="col-md-4 col-lg-3">
