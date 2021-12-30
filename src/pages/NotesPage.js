@@ -8,27 +8,29 @@ export default function NotesPage() {
   const [activeNote, setActiveNote] = useState({});
 
   useEffect(() => {
-    async function doSomeDataFetching() {
-      console.log("I'm gonna fetch some data atm!");
-      const res = await axios.get("/notes");
-      console.log("Got back:", res);
-      setNotes(res.data);
-    }
     doSomeDataFetching();
-
-    // getCurrentNoteIdFromUrl();
   }, []);
+
+  async function doSomeDataFetching() {
+    const res = await axios.get("/notes");
+    setNotes(res.data);
+  }
+
+  async function deleteNote(id) {
+    try {
+      await axios.delete(`notes/${id}`);
+      setActiveNote(null);
+      doSomeDataFetching();
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   return (
     <div className="notesPage">
       <SideBar notes={notes} setActiveNote={setActiveNote} />
 
-      <NoteContent {...activeNote} />
+      <NoteContent {...activeNote} onDelete={deleteNote} />
     </div>
   );
 }
-
-// function getCurrentNoteIdFromUrl() {
-//   const urlSearchParams = new URLSearchParams(document.location.search);
-//   console.warn("getCurrentNoteIdFromUrl", urlSearchParams);
-// }

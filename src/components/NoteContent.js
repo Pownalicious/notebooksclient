@@ -1,4 +1,4 @@
-export default function NoteContent({ title, content }) {
+export default function NoteContent({ id, title, content, onDelete }) {
   if (!title) return <p>click a note to load</p>;
 
   return (
@@ -9,6 +9,7 @@ export default function NoteContent({ title, content }) {
           <p className="card-text">{content}</p>
         </div>
       </div>
+      <button onClick={(_) => onDelete(id)}>delete note</button>
     </div>
   );
 }
