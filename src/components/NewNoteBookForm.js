@@ -1,40 +1,78 @@
-import React from "react";
+import { useState } from "react";
+import axios from "axios";
 
 export default function NewNoteBookForm() {
+  const [title, setTitle] = useState("");
+  const [description, setDesctiption] = useState("");
+  const [status, setStatus] = useState("");
+
+  async function createNewNote(title, description) {
+    try {
+      let response = await axios.post("/notes", { title, description });
+
+      setStatus(`note created "${response.data.title}"`);
+      setTitle("");
+      setDesctiption("");
+    } catch (e) {
+      setStatus(e.message);
+    }
+  }
+
   return (
-    <div>
-      <form>
-        <div class="form-outline mb-2">
-          <input type="text" id="form4Example1" class="form-control" />
-          <label class="form-label" for="form4Example1">
-            Title
-          </label>
-        </div>
+    <form onSubmit={(e) => e.preventDefault()}>
+      <div className="form-outline mb-2 mt-2">
+        <input
+          type="text"
+          id="form4Example1"
+          className="form-control"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <label className="form-label" htmlFor="form4Example1">
+          Title
+        </label>
+      </div>
 
-        <div class="form-outline mb-2">
-          <textarea class="form-control" id="form4Example3" rows="4"></textarea>
-          <label class="form-label" for="form4Example3">
-            My note
-          </label>
-        </div>
+      <div className="form-outline mb-2">
+        <textarea
+          className="form-control"
+          id="form4Example3"
+          rows="4"
+          value={description}
+          onChange={(e) => setDesctiption(e.target.value)}
+        ></textarea>
+        <label className="form-label" htmlFor="form4Example3">
+          My note
+        </label>
+      </div>
 
-        <div class="form-check d-flex justify-content-center mb-4">
+      {/* <div className="form-check d-flex justify-content-center mb-4">
           <input
-            class="form-check-input me-2"
+            className="form-check-input me-2"
             type="checkbox"
             value=""
             id="form4Example4"
             checked
           />
-          <label class="form-check-label" for="form4Example4">
+          <label className="form-check-label" htmlFor="form4Example4">
             Send me a copy of this message
           </label>
-        </div>
+        </div> */}
 
-        <button type="submit" class="btn btn-primary btn-block mb-4">
-          Send
-        </button>
-      </form>
-    </div>
+      {status && (
+        <div class="alert alert-info" role="alert">
+          {status}
+        </div>
+      )}
+
+      <button
+        type="submit"
+        className="btn btn-primary btn-block mb-4"
+        disabled={!title || !description}
+        onClick={() => createNewNote(title, description)}
+      >
+        Send
+      </button>
+    </form>
   );
 }

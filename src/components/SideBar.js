@@ -12,9 +12,9 @@ export default function SideBar(props) {
   return (
     <div className="sidebar leftMenu">
       <ul>
-        {props.notes.map((note) => {
+        {props.notes.map((note, i) => {
           return (
-            <li>
+            <li key={i}>
               <button className="button" onClick={() => clickHandler(note)}>
                 {note.title}
               </button>

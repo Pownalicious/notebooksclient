@@ -19,7 +19,13 @@ export default function NoteBookPage() {
     <div className="row">
       {notebooks.map((notebook, index) => {
         console.log(notebooks);
-        return <NoteBooks title={notebook.title} image={notebook.image} />;
+        return (
+          <NoteBooks
+            key={index}
+            title={notebook.title}
+            image={notebook.image}
+          />
+        );
       })}
     </div>
   );
