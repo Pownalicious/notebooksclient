@@ -21,6 +21,9 @@ export default function NewNoteBookForm() {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="form-outline mb-2 mt-2">
+        <label className="form-label" htmlFor="form4Example1">
+          <b> Title</b>
+        </label>
         <input
           type="text"
           id="form4Example1"
@@ -28,12 +31,12 @@ export default function NewNoteBookForm() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label className="form-label" htmlFor="form4Example1">
-          Title
-        </label>
       </div>
 
       <div className="form-outline mb-2">
+        <label className="form-label" htmlFor="form4Example3">
+          <b> My note</b>
+        </label>
         <textarea
           className="form-control"
           id="form4Example3"
@@ -41,24 +44,7 @@ export default function NewNoteBookForm() {
           value={description}
           onChange={(e) => setDesctiption(e.target.value)}
         ></textarea>
-        <label className="form-label" htmlFor="form4Example3">
-          My note
-        </label>
       </div>
-
-      {/* <div className="form-check d-flex justify-content-center mb-4">
-          <input
-            className="form-check-input me-2"
-            type="checkbox"
-            value=""
-            id="form4Example4"
-            checked
-          />
-          <label className="form-check-label" htmlFor="form4Example4">
-            Send me a copy of this message
-          </label>
-        </div> */}
-
       {status && (
         <div class="alert alert-info" role="alert">
           {status}

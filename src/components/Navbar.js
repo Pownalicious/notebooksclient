@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  let pages = [
+    { path: "/", label: "Main" },
+    { path: "/notes", label: "Notes" },
+    { path: "/create-form", label: "Forms" },
+  ];
   return (
     <div>
       <nav className="navbar navbar-light bg-light">
-        <form className="container-fluid justify-content-start">
-          <button className="btn btn-outline-success me-2" type="button">
-            <Link to="/">NoteBooks</Link>
-          </button>
-          <button className="btn btn-sm btn-outline-secondary" type="button">
-            <Link to="/notes">Notes</Link>
-          </button>
-          <button className="btn btn-sm btn-outline-secondary" type="button">
-            <Link to="/create-form">Create form</Link>
-          </button>
+        <form>
+          {pages.map((p, i) => {
+            return (
+              <button className="btn btn-outline-success me-2" type="button">
+                <Link to={p.path} key={i}>
+                  {p.label}
+                </Link>
+              </button>
+            );
+          })}
         </form>
       </nav>
     </div>

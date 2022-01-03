@@ -6,19 +6,17 @@ export default function NoteBookPage() {
   const [notebooks, setNotebooks] = useState([]);
 
   useEffect(() => {
-    async function doSomeDataFetching() {
-      console.log("I'm gonna fetch some data!");
-      const res = await axios.get("/notebooks");
-      console.log("Got back:", res);
-      setNotebooks(res.data);
-    }
     doSomeDataFetching();
   }, []);
+
+  async function doSomeDataFetching() {
+    const res = await axios.get("/notebooks");
+    setNotebooks(res.data);
+  }
 
   return (
     <div className="row">
       {notebooks.map((notebook, index) => {
-        console.log(notebooks);
         return (
           <NoteBooks
             key={index}
