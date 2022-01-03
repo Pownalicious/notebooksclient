@@ -4,7 +4,7 @@ export default function Navbar() {
   let pages = [
     { path: "/", label: "Main" },
     { path: "/notes", label: "Notes" },
-    { path: "/create-form", label: "Forms" },
+    { path: "/create-form", label: "Make a note" },
   ];
   return (
     <div>

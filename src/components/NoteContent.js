@@ -1,5 +1,5 @@
 export default function NoteContent({ id, title, content, onDelete }) {
-  if (!title) return <p>click a note to load</p>;
+  if (!title) return <p>Click a note to load..</p>;
 
   return (
     <div className="col-sm-3">
