@@ -1,9 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import NoteBooks from "../components/NoteBooks";
+import SearchBar from "../components/SearchBar";
 
 export default function NoteBookPage() {
   const [notebooks, setNotebooks] = useState([]);
+  //set a state for your searches
+  const [searchQuery, setSearchQuery] = useState("");
+
+  //create a function for search
+  function search(value) {
+    console.log("Searh this", value);
+    setSearchQuery(value);
+    debugger;
+  }
 
   useEffect(() => {
     doSomeDataFetching();
@@ -16,6 +26,8 @@ export default function NoteBookPage() {
 
   return (
     <div className="row">
+      <SearchBar onChange={search} />
+
       {notebooks.map((notebook, index) => {
         return (
           <NoteBooks

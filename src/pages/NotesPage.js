@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import NoteContent from "../components/NoteContent";
 import SideBar from "../components/SideBar";
+import SearchBar from "../components/SearchBar";
 
 export default function NotesPage() {
   const [notes, setNotes] = useState([]);

@@ -6,9 +6,9 @@ export default function NewNoteBookForm() {
   const [description, setDesctiption] = useState("");
   const [status, setStatus] = useState("");
 
-  async function createNewNote(title, description) {
+  async function createNewNote(title, content) {
     try {
-      let response = await axios.post("/notes", { title, description });
+      let response = await axios.post("/notes", { title, content });
 
       setStatus(`note created "${response.data.title}"`);
       setTitle("");
